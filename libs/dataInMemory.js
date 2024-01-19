@@ -4,8 +4,10 @@ let dataInMemory = []
 
 module.exports = {
   setData: async () => {
+    console.log("SET DATA INIT")
     try {
       await axios.get("https://api.thecatapi.com/v1/breeds").then((res) => {
+        console.log("aqui se trajo data: ",res.data)
         res.data.map((el) => {
           dataInMemory.push( { id:el.id, name: el.name, img_id: el.reference_image_id })
         });
@@ -16,6 +18,7 @@ module.exports = {
     }
   },
   getData: async () =>{
+    console.log("aqui trayendo data: ",dataInMemory)
     return dataInMemory
   }
 }

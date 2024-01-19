@@ -14,6 +14,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 //use the initial lib
+console.log("Pidiendo datos")
 dataInMemory.setData();
 
 //setup routes
