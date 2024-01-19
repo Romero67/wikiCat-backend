@@ -1,10 +1,14 @@
 const axios = require("axios");
-const dataInMemory = require('../libs/dataInMemory');
 
 exports.breeds = async (req, res) => {
   try {
-    console.log("aqui: ",await dataInMemory.getData())
-   res.json(await dataInMemory.getData())
+   axios.get(`https://api.thecatapi.com/v1/breeds`).then(response => {
+    let breeds = []
+    response.data.map((el) => {
+      breeds.push( { id:el.id, name: el.name, img_id: el.reference_image_id })
+    });
+    res.json(breeds)
+   });
   } catch (error) {
    console.error(error);
   }
